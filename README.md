@@ -1,6 +1,6 @@
-# heroes_app
+# Heroes App
 
-A new Flutter project.
+Heroes app (for unrusting purposes only)
 
 ## Getting Started
 
