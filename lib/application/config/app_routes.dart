@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:heroes_app/app_home_page.dart';
+import 'package:heroes_app/application/ui/app_home_page.dart';
 
 /// Maps all app routes
 class AppRoutes {

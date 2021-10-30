@@ -1,7 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:heroes_app/app_routes.dart';
+import 'dart:io';
 
-void main() {
+import 'package:flutter/material.dart';
+import 'package:heroes_app/application/config/app_env.dart';
+import 'package:heroes_app/application/config/app_routes.dart';
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
+Future<void> main() async {
+  await AppEnv().init();
+  HttpOverrides.global = MyHttpOverrides();
+
   runApp(const MyApp());
 }
 
@@ -12,7 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Heroes App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
