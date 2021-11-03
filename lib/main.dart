@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:heroes_app/application/config/app_env.dart';
 import 'package:heroes_app/application/config/app_routes.dart';
+import 'package:window_size/window_size.dart' as libWindowSize;
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -14,8 +16,17 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await AppEnv().init();
   HttpOverrides.global = MyHttpOverrides();
+
+  if (!kIsWeb) {
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      libWindowSize.setWindowTitle('Heroes App');
+      libWindowSize.setWindowMinSize(const Size(320, 480));
+      libWindowSize.setWindowMaxSize(Size.infinite);
+    }
+  }
 
   runApp(const MyApp());
 }

@@ -1,5 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 class AppEnv {
   static AppEnv? _instance;
 
@@ -7,18 +5,7 @@ class AppEnv {
 
   factory AppEnv() => _instance ??= const AppEnv._();
 
-  Future<void> init() async {
-    await dotenv.load(fileName: 'dotenv.env');
-  }
+  Future<void> init() async {}
 
-  String get heroesApiUrl => _getOrThrow('HEROES_API_URL');
-  String get heroesApiKey => _getOrThrow('HEROES_API_KEY');
-
-  static String _getOrThrow(String key) {
-    final value = dotenv.env[key];
-    if (value == null) {
-      throw 'Missing environment variable: $key';
-    }
-    return value;
-  }
+  String get heroesApiUrl => 'https://akabab.github.io/superhero-api/api/';
 }
