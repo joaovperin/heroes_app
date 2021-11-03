@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:heroes_app/domain/heroes/images_repository.dart';
 import 'package:heroes_app/domain/heroes/super_hero.dart';
 import 'package:heroes_app/domain/heroes/super_hero_repository.dart';
 import 'package:heroes_app/infra/conditional_parent_widget.dart';
@@ -120,7 +118,7 @@ class _SuperHeroCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    bio.publisher,
+                    bio.publisher ?? 'Unknown publisher',
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],
@@ -181,6 +179,18 @@ class _SuperHeroCard extends StatelessWidget {
                       _HeroStatWidget(
                         label: 'Combat',
                         value: stats.combat,
+                      ),
+                      const Divider(),
+                      _HeroStatWidget(
+                        label: 'Total',
+                        value: [
+                          stats.combat,
+                          stats.durability,
+                          stats.intelligence,
+                          stats.power,
+                          stats.speed,
+                          stats.strength
+                        ].reduce((a, b) => a + b),
                       ),
                     ],
                   ),

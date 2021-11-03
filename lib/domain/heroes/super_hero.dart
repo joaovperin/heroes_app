@@ -215,7 +215,7 @@ class Biography {
   List<String> aliases;
   String placeOfBirth;
   String firstAppearance;
-  String publisher;
+  String? publisher;
   String alignment;
 
   Biography({

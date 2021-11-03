@@ -18,8 +18,19 @@ class SuperHeroRepository {
   Future<SuperHero> getRandomHeroFromApi() async {
     _allHeroesListCache ??= await _fetchAllHeroes();
     final heroesList = _allHeroesListCache!;
-    final hero = heroesList[Random().nextInt(heroesList.length)];
-    return SuperHero.fromMap(hero);
+    final heroFromList = heroesList[Random().nextInt(heroesList.length)];
+    final hero = SuperHero.fromMap(heroFromList);
+
+    if (hero.name == 'Chuck Norris') {
+      hero.powerstats.power = 9999999;
+      hero.powerstats.intelligence = 9999999;
+      hero.powerstats.strength = 9999999;
+      hero.powerstats.speed = 9999999;
+      hero.powerstats.durability = 9999999;
+      hero.powerstats.combat = 9999999;
+    }
+
+    return hero;
   }
 
   Future<List<dynamic>> _fetchAllHeroes() async {
