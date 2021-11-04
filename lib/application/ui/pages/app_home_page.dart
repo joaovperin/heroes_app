@@ -101,7 +101,7 @@ class _SuperHeroCard extends StatelessWidget {
         ),
         child: Container(
           padding: const EdgeInsets.all(16),
-          constraints: const BoxConstraints(maxWidth: 500, minHeight: 500),
+          constraints: const BoxConstraints.tightForFinite(width: 500),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -132,18 +132,6 @@ class _SuperHeroCard extends StatelessWidget {
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                // child: FutureBuilder<Uint8List>(
-                //   future: ImagesRepository().getImageByUrl(imgs.lg),
-                //   builder: (context, snapshot) {
-                //     if (!snapshot.hasData ||
-                //         snapshot.connectionState == ConnectionState.waiting) {
-                //       return const Center(
-                //         child: _LoadingComponent(),
-                //       );
-                //     }
-                //     return Image.memory(snapshot.data!);
-                //   },
-                // ),
               ),
               Text(
                 bio.fullName,
